@@ -11,7 +11,6 @@
 
 namespace League\Geotools\Tests\Batch;
 
-use Cache\Adapter\PHPArray\ArrayCachePool;
 use Geocoder\Collection;
 use Geocoder\Provider\AbstractProvider;
 use Geocoder\Provider\Provider as ProviderInterface;
@@ -19,6 +18,7 @@ use Geocoder\Query\GeocodeQuery;
 use Geocoder\Query\ReverseQuery;
 use League\Geotools\Batch\Batch;
 use Psr\Cache\CacheItemPoolInterface;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
 
 /**
  * @author Antoine Corcy <contact@sbin.dk>
@@ -812,7 +812,7 @@ class BatchTest extends \League\Geotools\Tests\TestCase
     public function testSetCacheShouldReturnBatchInterface()
     {
         $batch          = new TestableBatch($this->geocoder);
-        $batchWithCache = $batch->setCache(new ArrayCachePool());
+        $batchWithCache = $batch->setCache(new ArrayAdapter());
 
         $this->assertTrue(is_object($batchWithCache));
         $this->assertInstanceOf('League\Geotools\Batch\Batch', $batchWithCache);

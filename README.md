@@ -215,7 +215,7 @@ $geocoder->registerProviders([
 
 try {
     $geotools = new \League\Geotools\Geotools();
-    $cache    = new \Cache\Adapter\PHPArray\ArrayCachePool();
+    $cache    = new \Symfony\Component\Cache\Adapter\ArrayAdapter();
 
     $results  = $geotools->batch($geocoder)->setCache($cache)->geocode([
         'Paris, France',
